@@ -1,4 +1,4 @@
-﻿namespace CCS175_CSharpDemo
+﻿namespace CCS100_CSharpDemo
 {
     partial class Form1
     {

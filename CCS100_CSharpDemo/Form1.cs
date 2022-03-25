@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 using Thorlabs.CCS_Series;
 
-namespace CCS175_CSharpDemo
+namespace CCS100_CSharpDemo
 {
     public partial class Form1 : Form
     {
