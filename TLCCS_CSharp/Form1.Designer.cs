@@ -1,6 +1,6 @@
-﻿namespace CCS100_CSharpDemo
+﻿namespace CCS_CSharpDemo
 {
-    partial class Form1
+    partial class Form1_CCS
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -38,11 +38,20 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_StartScan = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button_StartScanCont = new System.Windows.Forms.Button();
+            this.button_Init = new System.Windows.Forms.Button();
+            this.button_Release = new System.Windows.Forms.Button();
+            this.textBox_deviceStatus = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button_GetDeviceStatus = new System.Windows.Forms.Button();
+            this.button_GetScanData = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IntegrationTime)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -53,7 +62,7 @@
             this.groupBox1.Controls.Add(this.textBox_SerialNumber);
             this.groupBox1.Location = new System.Drawing.Point(12, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(474, 61);
+            this.groupBox1.Size = new System.Drawing.Size(507, 61);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Instrument Informations";
@@ -93,7 +102,6 @@
             this.textBox_SerialNumber.Size = new System.Drawing.Size(100, 19);
             this.textBox_SerialNumber.TabIndex = 1;
             this.textBox_SerialNumber.Text = "00403814";
-            this.textBox_SerialNumber.TextChanged += new System.EventHandler(this.textBox_SerialNumber_TextChanged);
             // 
             // label2
             // 
@@ -112,10 +120,10 @@
             this.numericUpDown_IntegrationTime.Size = new System.Drawing.Size(100, 19);
             this.numericUpDown_IntegrationTime.TabIndex = 3;
             this.numericUpDown_IntegrationTime.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            65536});
+            131072});
             // 
             // groupBox2
             // 
@@ -130,9 +138,9 @@
             // 
             // button_StartScan
             // 
-            this.button_StartScan.Location = new System.Drawing.Point(12, 129);
+            this.button_StartScan.Location = new System.Drawing.Point(198, 129);
             this.button_StartScan.Name = "button_StartScan";
-            this.button_StartScan.Size = new System.Drawing.Size(209, 21);
+            this.button_StartScan.Size = new System.Drawing.Size(142, 21);
             this.button_StartScan.TabIndex = 5;
             this.button_StartScan.Text = "Start Scan";
             this.button_StartScan.UseVisualStyleBackColor = true;
@@ -142,31 +150,112 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 156);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(474, 215);
+            this.pictureBox1.Size = new System.Drawing.Size(512, 65);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Location = new System.Drawing.Point(518, 129);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.textBox1.Location = new System.Drawing.Point(12, 267);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(512, 69);
+            this.textBox1.TabIndex = 7;
             // 
-            // Form1
+            // button_StartScanCont
+            // 
+            this.button_StartScanCont.Location = new System.Drawing.Point(372, 129);
+            this.button_StartScanCont.Name = "button_StartScanCont";
+            this.button_StartScanCont.Size = new System.Drawing.Size(126, 23);
+            this.button_StartScanCont.TabIndex = 8;
+            this.button_StartScanCont.Text = "StartScanCont";
+            this.button_StartScanCont.UseVisualStyleBackColor = true;
+            this.button_StartScanCont.Click += new System.EventHandler(this.button_StartScanCont_Click);
+            // 
+            // button_Init
+            // 
+            this.button_Init.Location = new System.Drawing.Point(12, 127);
+            this.button_Init.Name = "button_Init";
+            this.button_Init.Size = new System.Drawing.Size(75, 23);
+            this.button_Init.TabIndex = 9;
+            this.button_Init.Text = "Init";
+            this.button_Init.UseVisualStyleBackColor = true;
+            this.button_Init.Click += new System.EventHandler(this.button_Init_Click);
+            // 
+            // button_Release
+            // 
+            this.button_Release.Location = new System.Drawing.Point(107, 129);
+            this.button_Release.Name = "button_Release";
+            this.button_Release.Size = new System.Drawing.Size(75, 23);
+            this.button_Release.TabIndex = 10;
+            this.button_Release.Text = "Release";
+            this.button_Release.UseVisualStyleBackColor = true;
+            this.button_Release.Click += new System.EventHandler(this.button_Release_Click);
+            // 
+            // textBox_deviceStatus
+            // 
+            this.textBox_deviceStatus.Location = new System.Drawing.Point(94, 12);
+            this.textBox_deviceStatus.Name = "textBox_deviceStatus";
+            this.textBox_deviceStatus.Size = new System.Drawing.Size(70, 19);
+            this.textBox_deviceStatus.TabIndex = 11;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button_GetDeviceStatus);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.textBox_deviceStatus);
+            this.groupBox3.Location = new System.Drawing.Point(242, 78);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(293, 45);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "groupBox3";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "devceStatus";
+            // 
+            // button_GetDeviceStatus
+            // 
+            this.button_GetDeviceStatus.Location = new System.Drawing.Point(171, 12);
+            this.button_GetDeviceStatus.Name = "button_GetDeviceStatus";
+            this.button_GetDeviceStatus.Size = new System.Drawing.Size(100, 23);
+            this.button_GetDeviceStatus.TabIndex = 13;
+            this.button_GetDeviceStatus.Text = "GetDeviceStatus";
+            this.button_GetDeviceStatus.UseVisualStyleBackColor = true;
+            this.button_GetDeviceStatus.Click += new System.EventHandler(this.button_GetDeviceStatus_Click);
+            // 
+            // button_GetScanData
+            // 
+            this.button_GetScanData.Location = new System.Drawing.Point(20, 238);
+            this.button_GetScanData.Name = "button_GetScanData";
+            this.button_GetScanData.Size = new System.Drawing.Size(101, 23);
+            this.button_GetScanData.TabIndex = 13;
+            this.button_GetScanData.Text = "GetScanData";
+            this.button_GetScanData.UseVisualStyleBackColor = true;
+            this.button_GetScanData.Click += new System.EventHandler(this.button_GetScanData_Click);
+            // 
+            // Form1_CCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 382);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(547, 348);
+            this.Controls.Add(this.button_GetScanData);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.button_Release);
+            this.Controls.Add(this.button_Init);
+            this.Controls.Add(this.button_StartScanCont);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button_StartScan);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "Form1_CCS";
             this.Text = "CSS CSharpDemo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox1.ResumeLayout(false);
@@ -175,7 +264,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -191,7 +283,15 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button_StartScan;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button_StartScanCont;
+        private System.Windows.Forms.Button button_Init;
+        private System.Windows.Forms.Button button_Release;
+        private System.Windows.Forms.TextBox textBox_deviceStatus;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button_GetDeviceStatus;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button_GetScanData;
     }
 }
 

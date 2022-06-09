@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace CCS100_CSharpDemo
+namespace CCS_CSharpDemo
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace CCS100_CSharpDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1_CCS());
         }
     }
 }
