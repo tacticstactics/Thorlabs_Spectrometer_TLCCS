@@ -37,20 +37,21 @@
             this.numericUpDown_IntegrationTime = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_StartScan = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button_StartScanCont = new System.Windows.Forms.Button();
             this.button_Init = new System.Windows.Forms.Button();
             this.button_Release = new System.Windows.Forms.Button();
             this.textBox_deviceStatus = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.button_GetDeviceStatus = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.button_GetScanData = new System.Windows.Forms.Button();
+            this.button_SaveAsText = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label_filename = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IntegrationTime)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,35 +139,27 @@
             // 
             // button_StartScan
             // 
-            this.button_StartScan.Location = new System.Drawing.Point(198, 129);
+            this.button_StartScan.Location = new System.Drawing.Point(12, 158);
             this.button_StartScan.Name = "button_StartScan";
-            this.button_StartScan.Size = new System.Drawing.Size(142, 21);
+            this.button_StartScan.Size = new System.Drawing.Size(100, 25);
             this.button_StartScan.TabIndex = 5;
             this.button_StartScan.Text = "Start Scan";
             this.button_StartScan.UseVisualStyleBackColor = true;
             this.button_StartScan.Click += new System.EventHandler(this.button_StartScan_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 156);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(512, 65);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 267);
+            this.textBox1.Location = new System.Drawing.Point(11, 260);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(512, 69);
+            this.textBox1.Size = new System.Drawing.Size(512, 45);
             this.textBox1.TabIndex = 7;
             // 
             // button_StartScanCont
             // 
-            this.button_StartScanCont.Location = new System.Drawing.Point(372, 129);
+            this.button_StartScanCont.Location = new System.Drawing.Point(113, 158);
             this.button_StartScanCont.Name = "button_StartScanCont";
-            this.button_StartScanCont.Size = new System.Drawing.Size(126, 23);
+            this.button_StartScanCont.Size = new System.Drawing.Size(100, 25);
             this.button_StartScanCont.TabIndex = 8;
             this.button_StartScanCont.Text = "StartScanCont";
             this.button_StartScanCont.UseVisualStyleBackColor = true;
@@ -176,7 +169,7 @@
             // 
             this.button_Init.Location = new System.Drawing.Point(12, 127);
             this.button_Init.Name = "button_Init";
-            this.button_Init.Size = new System.Drawing.Size(75, 23);
+            this.button_Init.Size = new System.Drawing.Size(100, 25);
             this.button_Init.TabIndex = 9;
             this.button_Init.Text = "Init";
             this.button_Init.UseVisualStyleBackColor = true;
@@ -184,9 +177,9 @@
             // 
             // button_Release
             // 
-            this.button_Release.Location = new System.Drawing.Point(107, 129);
+            this.button_Release.Location = new System.Drawing.Point(113, 127);
             this.button_Release.Name = "button_Release";
-            this.button_Release.Size = new System.Drawing.Size(75, 23);
+            this.button_Release.Size = new System.Drawing.Size(100, 25);
             this.button_Release.TabIndex = 10;
             this.button_Release.Text = "Release";
             this.button_Release.UseVisualStyleBackColor = true;
@@ -206,19 +199,10 @@
             this.groupBox3.Controls.Add(this.textBox_deviceStatus);
             this.groupBox3.Location = new System.Drawing.Point(242, 78);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(293, 45);
+            this.groupBox3.Size = new System.Drawing.Size(282, 45);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 12);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "devceStatus";
+            this.groupBox3.Text = "deviceStatus";
             // 
             // button_GetDeviceStatus
             // 
@@ -230,28 +214,57 @@
             this.button_GetDeviceStatus.UseVisualStyleBackColor = true;
             this.button_GetDeviceStatus.Click += new System.EventHandler(this.button_GetDeviceStatus_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "devceStatus";
+            // 
             // button_GetScanData
             // 
-            this.button_GetScanData.Location = new System.Drawing.Point(20, 238);
+            this.button_GetScanData.Location = new System.Drawing.Point(12, 194);
             this.button_GetScanData.Name = "button_GetScanData";
-            this.button_GetScanData.Size = new System.Drawing.Size(101, 23);
+            this.button_GetScanData.Size = new System.Drawing.Size(100, 25);
             this.button_GetScanData.TabIndex = 13;
             this.button_GetScanData.Text = "GetScanData";
             this.button_GetScanData.UseVisualStyleBackColor = true;
             this.button_GetScanData.Click += new System.EventHandler(this.button_GetScanData_Click);
             // 
+            // button_SaveAsText
+            // 
+            this.button_SaveAsText.Location = new System.Drawing.Point(113, 194);
+            this.button_SaveAsText.Name = "button_SaveAsText";
+            this.button_SaveAsText.Size = new System.Drawing.Size(100, 25);
+            this.button_SaveAsText.TabIndex = 14;
+            this.button_SaveAsText.Text = "Save As Text";
+            this.button_SaveAsText.UseVisualStyleBackColor = true;
+            this.button_SaveAsText.Click += new System.EventHandler(this.button_SaveAsText_Click);
+            // 
+            // label_filename
+            // 
+            this.label_filename.AutoSize = true;
+            this.label_filename.Location = new System.Drawing.Point(12, 233);
+            this.label_filename.Name = "label_filename";
+            this.label_filename.Size = new System.Drawing.Size(48, 12);
+            this.label_filename.TabIndex = 15;
+            this.label_filename.Text = "filename";
+            // 
             // Form1_CCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 348);
+            this.ClientSize = new System.Drawing.Size(535, 317);
+            this.Controls.Add(this.label_filename);
+            this.Controls.Add(this.button_SaveAsText);
             this.Controls.Add(this.button_GetScanData);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button_Release);
             this.Controls.Add(this.button_Init);
             this.Controls.Add(this.button_StartScanCont);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button_StartScan);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -263,7 +276,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IntegrationTime)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -282,7 +294,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button_StartScan;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button_StartScanCont;
         private System.Windows.Forms.Button button_Init;
@@ -292,6 +303,9 @@
         private System.Windows.Forms.Button button_GetDeviceStatus;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_GetScanData;
+        private System.Windows.Forms.Button button_SaveAsText;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label_filename;
     }
 }
 

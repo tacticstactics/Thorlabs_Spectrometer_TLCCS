@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
+using System.Threading.Tasks;
+using System.Text;
 using Thorlabs.CCS_Series;
+
+
 
 namespace CCS_CSharpDemo
 {
@@ -16,7 +22,9 @@ namespace CCS_CSharpDemo
             button_StartScan.Enabled = false;
             button_StartScanCont.Enabled = false;
             button_Release.Enabled = false;
-                
+            button_GetScanData.Enabled = false;
+            button_SaveAsText.Enabled = false;
+
         }
 
         private void button_Init_Click(object sender, EventArgs e)
@@ -61,9 +69,11 @@ namespace CCS_CSharpDemo
 
 
             button_Init.Enabled = false;
+            button_Release.Enabled = true;
             button_StartScan.Enabled = true;
             button_StartScanCont.Enabled = true;
-            button_Release.Enabled = true;
+            button_GetScanData.Enabled = false;
+            button_SaveAsText.Enabled = false;
 
         }
 
@@ -80,13 +90,14 @@ namespace CCS_CSharpDemo
             if (ccsSeries != null)
                 ccsSeries.Dispose();
 
-        button_Init.Enabled = true;
-        button_Release.Enabled = false;
-        button_StartScan.Enabled = false;
-        button_StartScanCont.Enabled = false;
+            button_Init.Enabled = true;
+            button_Release.Enabled = false;
+            button_StartScan.Enabled = false;
+            button_StartScanCont.Enabled = false;
+            button_GetScanData.Enabled = false;
+            button_SaveAsText.Enabled = false;
 
         }
-
 
 
 
@@ -94,7 +105,6 @@ namespace CCS_CSharpDemo
         {
             int status;
             int res;
-
 
             // has the device started?
             //res = ccsSeries.getDeviceStatus(out status);
@@ -121,26 +131,30 @@ namespace CCS_CSharpDemo
             if ((status & 0x0010) > 0)
             {
 
-                MessageBox.Show("status is > 0x00010. There should be data.", "status", MessageBoxButtons.OK, MessageBoxIcon.None);
+                //MessageBox.Show("status is > 0x00010. There should be data.", "status", MessageBoxButtons.OK, MessageBoxIcon.None);
 
 
                 double[] spectrumdata = new double[3648];
                 res = ccsSeries.getScanData(spectrumdata);
 
-                //original
-
-                textBox1.Text = "value[";
 
                 for (int i = 0; i < spectrumdata.Length; i++)
                 {
-                    textBox1.Text = "value[" + i.ToString() + "]" + Convert.ToString(spectrumdata[i]) + "\r\n";
-                    //textBox1.Text = Convert.ToString(spectrumdata[10]);
-
+                    textBox1.Text = "pixel number," + i.ToString() + ", data " + Convert.ToString(spectrumdata[i]) + "\r\n";
                 }
+
+                res = ccsSeries.getDeviceStatus(out status);
+                textBox_deviceStatus.Text = status.ToString();
+
             }
+
             else
-            { 
-                MessageBox.Show("status is not > 0x00010. There is no data", "status", MessageBoxButtons.OK, MessageBoxIcon.None);
+            {
+                //MessageBox.Show("status is not > 0x00010. There is no data", "status", MessageBoxButtons.OK, MessageBoxIcon.None);
+
+                res = ccsSeries.getDeviceStatus(out status);
+                textBox_deviceStatus.Text = status.ToString();
+                button_GetScanData.Enabled = true;
 
             }
 
@@ -154,7 +168,7 @@ namespace CCS_CSharpDemo
 
             // start the scanCont
             res = ccsSeries.startScanCont();
-                
+
 
             if (res == 0)
             {
@@ -162,6 +176,9 @@ namespace CCS_CSharpDemo
                 //button_StartScan.BackColor = System.Drawing.Color.LightGreen;
                 button_StartScan.Enabled = false;
             }
+
+            res = ccsSeries.getDeviceStatus(out status);
+            textBox_deviceStatus.Text = status.ToString();
 
         }
 
@@ -171,33 +188,55 @@ namespace CCS_CSharpDemo
             int status;
 
             ccsSeries.getDeviceStatus(out status);
-
             textBox_deviceStatus.Text = status.ToString();
+
+            button_StartScan.Enabled = true;
+            button_StartScanCont.Enabled = true;
+            button_GetScanData.Enabled = true;
 
 
         }
 
         private void button_GetScanData_Click(object sender, EventArgs e)
         {
+            textBox1.Clear();
 
             double[] spectrumdata = new double[3648];
             int res = ccsSeries.getScanData(spectrumdata);
 
-            //original
-
-            textBox1.Text = "value[";
 
             for (int i = 0; i < spectrumdata.Length; i++)
+  
             {
-                textBox1.Text = "value[" + i.ToString() + "]" + Convert.ToString(spectrumdata[i]) + "\r\n";
-                //textBox1.Text = Convert.ToString(spectrumdata[10]);
+                textBox1.AppendText(i.ToString() + ", " + Convert.ToString(spectrumdata[i]) + "\r\n");
+
+                //                textBox1.Text = "pixel number," + i.ToString() + ", data " + Convert.ToString(spectrumdata[i]) + "\r\n";
+                //                textBox1.AppendText("\r\n");
+
+            }
+
+            button_StartScan.Enabled = true;
+            button_StartScanCont.Enabled = true;
+            button_SaveAsText.Enabled = true;
+        }
+
+        private void button_SaveAsText_Click(object sender, EventArgs e)
+        {
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                label_filename.Text = saveFileDialog1.FileName;
+
+                FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.CreateNew);
+                StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding("shift_jis"));
+
+                sw.Write(textBox1.Text);
+
+                sw.Close();
+                fs.Close();
 
             }
         }
-
-
-
-
     }
 }
-
