@@ -102,7 +102,7 @@
             this.textBox_SerialNumber.Name = "textBox_SerialNumber";
             this.textBox_SerialNumber.Size = new System.Drawing.Size(100, 19);
             this.textBox_SerialNumber.TabIndex = 1;
-            this.textBox_SerialNumber.Text = "00403814";
+            this.textBox_SerialNumber.Text = "00246935";
             // 
             // label2
             // 
